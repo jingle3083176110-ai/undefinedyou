@@ -43,6 +43,7 @@ const skillCategories = {
 		languages: [
 			{ name: "Java Spring Boot", highlight: true },
 			{ name: "NodeJS", highlight: false },
+			{ name: "NestJS", highlight: true },
 			{ name: "ExpressJS", highlight: true },
 			{ name: "PHP", highlight: false },
 			{ name: "Laravel", highlight: true },
@@ -53,6 +54,7 @@ const skillCategories = {
 			{ name: "PostgreSQL", highlight: true },
 			{ name: "MySQL", highlight: true },
 			{ name: "MongoDB", highlight: false },
+			{ name: "Redis", highlight: false },
 			{ name: "Firebase", highlight: false },
 		],
 		tools: [
@@ -66,6 +68,7 @@ const skillCategories = {
 			"Bitbucket",
 			"Google Cloud",
 			"IBM Cloud",
+			"Sentry",
 		],
 	},
 	ai: {

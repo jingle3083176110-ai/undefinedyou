@@ -70,7 +70,7 @@ const jsonLd = {
 	url: "https://www.alvalens.my.id",
 	jobTitle: "Full Stack Software Engineer",
 	worksFor: [
-		{ "@type": "Organization", name: "MGG Software" },
+		{ "@type": "Organization", name: "Vouch Technology" },
 		{ "@type": "Organization", name: "Intervyou" },
 	],
 	alumniOf: {

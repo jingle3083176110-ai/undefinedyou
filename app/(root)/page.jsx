@@ -114,12 +114,11 @@ const MyPage = () => {
 								delay: 0.4,
 								type: "spring",
 							}}>
-							Hi! I&rsquo;am Alvalen, A fullstack software
-							engineer specializing in modern Web Development with
-							a growing focus on Artificial Intelligence. I
-							architect scalable, production-ready engines—from
-							high-traffic Java microservices to RAG-powered SaaS
-							platforms.
+							Hi! I&rsquo;am Alvalen, a Fullstack Software
+							Engineer with a growing focus on Artificial
+							Intelligence. I architect scalable,
+							production-ready engines, from high-traffic Java
+							microservices to RAG-powered SaaS platforms.
 						</motion.p>
 						<motion.div
 							className="buttons flex flex-row justify-center items-center space-x-4 mt-10"

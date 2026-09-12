@@ -136,24 +136,28 @@ export default function About() {
 						end-users.
 						<br />
 						<br />
-						Currently, I engineer large-scale enterprise systems at{" "}
+						Recognized as{" "}
 						<span className="text-black font-medium">
-							MGG Software
+							Best Computer Science Graduate
 						</span>
-						, ensuring strict data compliance and high availability
-						for international clients. Simultaneously, I lead the
-						technical vision as the{" "}
+						, I bring a systems-engineering mindset to everything
+						I build, from architecting enterprise-grade backends
+						to founding and monetizing an{" "}
 						<span className="text-black font-medium">
-							CTO of Intervyou
+							AI SaaS product
 						</span>
-						, an AI-driven platform supported by the{" "}
+						. Today, I engineer full-stack and AI systems at{" "}
 						<span className="text-black font-medium">
-							Google for Startups Cloud Program and NVIDIA
-							Inception
+							Vouch Technology
+						</span>{" "}
+						while leading the technical vision as{" "}
+						<span className="text-black font-medium">
+							Founder & CTO of Intervyou
 						</span>
-						. I remain dedicated to delivering measurable business
-						value at the intersection of web technologies and
-						artificial intelligence.
+						, spanning multi-agent pipelines and RAG
+						architectures. I remain dedicated to delivering
+						measurable business value at the intersection of web
+						technologies and artificial intelligence.
 					</p>
 					<Card />
 				</motion.div>
