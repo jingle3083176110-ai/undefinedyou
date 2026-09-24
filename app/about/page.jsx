@@ -1,22 +1,22 @@
 "use client";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import Button from "@/components/Button";
-import Image from "next/image";
-import FixedButton from "@/components/FixedButton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import Quote from "./components/quote/quote.jsx";
-import Skills from "./components/skills/skills.jsx";
-import Experience from "./components/experience.jsx";
-import Education from "./components/education.jsx";
 
-// images
-import Hero from "@/public/image/me2.jpg";
+const fadeUp = (delay = 0) => ({
+	initial: { opacity: 0, y: 30 },
+	whileInView: { opacity: 1, y: 0 },
+	transition: { duration: 0.6, delay },
+});
 
-import Hr from "@/components/Hr";
-import About from "./components/about/about.jsx";
+function SectionTitle({ children }) {
+	return (
+		<h2 className="font-mono text-xs tracking-[0.3em] uppercase text-muted border-b border-ink/15 pb-3 mb-8">
+			{children}
+		</h2>
+	);
+}
 
 export default function Page() {
 	useEffect(() => {
@@ -24,80 +24,63 @@ export default function Page() {
 	}, []);
 
 	return (
-		<>
-			<main className="overflow-hidden">
-				<FixedButton href="/#about">
-					<FontAwesomeIcon
-						icon={faChevronLeft}
-						className="text-black pr-10"
+		<main className="overflow-hidden px-10 pt-32 pb-24">
+			<div className="mx-auto max-w-screen-md">
+				<motion.p
+					className="font-mono text-xs tracking-[0.3em] uppercase text-muted mb-6"
+					{...fadeUp()}>
+					About
+				</motion.p>
+				<div className="grid items-center gap-12 md:grid-cols-[minmax(0,1fr)_13rem] md:gap-16">
+					<div>
+						<motion.h1
+							className="font-serif text-ink text-4xl md:text-6xl leading-[1.2]"
+							{...fadeUp(0.1)}>
+							A student, a builder, and someone still figuring things out.
+						</motion.h1>
+						<motion.p
+							className="text-xl mt-8 text-muted leading-relaxed"
+							{...fadeUp(0.2)}>
+							I use this space to leave a trace of projects, questions, and the small things that change how I see the world.
+						</motion.p>
+					</div>
+					<motion.div className="md:justify-self-end" {...fadeUp(0.25)}>
+					<img
+						src="/about/profile.jpg"
+						alt="Personal profile"
+						className="h-52 w-52 rounded-full border border-ink/15 object-cover shadow-[0_12px_30px_rgba(26,24,21,.12)]"
 					/>
-				</FixedButton>
-				<div className="relative h-screen  gap-4 p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
-					{/* hero */}
-					<div className="z-0 mb-48 md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
-						<motion.div
-							initial={{ scale: 1 }}
-							animate={{ scale: 1.6 }}
-							transition={{ ease: "circOut", duration: 1 }}
-							className="relative bg-slate-300 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] grayscale hover:grayscale-0 ">
-							<Image
-								src={Hero}
-								alt="Alvalen Shafel"
-								fill
-								sizes="(max-width: 768px) 80vw, 30vw"
-								className="object-cover"
-								placeholder="blur"
-							/>
-						</motion.div>
-					</div>
-					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 backdrop-filter backdrop-blur-sm md:backdrop-blur-none bg-gray-100 bg-opacity-50 md:bg-transparent md:pt-0">
-						<h1 className="md:bg-white bg-transparent lg:bg-transparent bg-opacity-50 md:px-0 text-black text-5xl md:text-8xl font-bold">
-							About Me
-						</h1>
-						<Hr />
-						<p className="title text-xl mt-4 tracking-wider text-gray-900 leading-[1.7rem] mb-5 ">
-							A brief introduction my journey as a{" "}
-							<span className="bg-transparent md:bg-gray-100 bg-opacity-50 xl:bg-transparent">
-								software engineer.
-							</span>
-						</p>
-						<motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.5, ease: "circOut" }}
-							onClick={() => {
-								window.scrollTo({
-									top: 1000,
-									behavior: "smooth",
-								});
-							}}
-							className="mb-3">
-							<Button variation="primary">Scroll Down</Button>
-						</motion.div>
-					</div>
+					</motion.div>
 				</div>
-				{/* end hero */}
 
-				{/* about */}
-				<About />
-				{/* end about */}
+				<motion.div className="mt-20 grid gap-16 md:grid-cols-2" {...fadeUp(0.1)}>
+					<div>
+						<SectionTitle>Currently</SectionTitle>
+						<ul className="space-y-2 font-serif text-2xl text-ink">
+							<li>Computer Science</li>
+							<li>Backend Systems</li>
+							<li>AI Agents</li>
+						</ul>
+					</div>
+					<div>
+						<SectionTitle>Alongside</SectionTitle>
+						<ul className="space-y-3 text-muted">
+							<li>Writing</li>
+							<li>Reading</li>
+							<li>Life</li>
+							<li>Exploring</li>
+						</ul>
+					</div>
+				</motion.div>
 
-				{/* skills */}
-				<Skills />
-				{/* end skills */}
-
-				{/* experience */}
-				<Experience />
-				{/* end experience */}
-
-				{/* Education */}
-				<Education />
-				{/* end Education */}
-
-				{/* Quote */}
-				<Quote />
-				{/* end Quote */}
-			</main>
-		</>
+				<motion.div className="mt-16" {...fadeUp()}>
+					<SectionTitle>Education</SectionTitle>
+					<p className="text-muted leading-relaxed">
+						Undergraduate student in Computer Science and Engineering at The
+						Chinese University of Hong Kong, Shenzhen (CUHK-Shenzhen).
+					</p>
+				</motion.div>
+			</div>
+		</main>
 	);
 }

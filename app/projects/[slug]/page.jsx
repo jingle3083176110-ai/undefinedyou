@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, use, useCallback } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import jsonData from "@/json/data.json";
 
@@ -10,7 +9,6 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import NotFound from "@/app/not-found";
 import Image from "next/image";
 import BlurImage from "@/public/image/placeholder/blur.jpg";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -80,7 +78,6 @@ function ScrollDownButton() {
 
 function Page(props) {
     const params = use(props.params);
-    const router = useRouter();
     const [data, setData] = useState(null);
     useEffect(() => {
 		const selectedData = jsonData.Projects.find(
@@ -126,50 +123,41 @@ function Page(props) {
 		);
 	}
     return (
-		<div className="relative min-h-screen w-full gap-4 p-10 flex justify-center items-center flex-col mb-10 ">
-			<button
-				onClick={() => router.back()}
-				className="fixed top-2 -left-2 md:left-10 flex justify-center items-center rounded-full p-4 transition duration-300 ease-in-out z-50"
-				aria-label="Go back">
-				<FontAwesomeIcon
-					icon={faChevronLeft}
-					className="text-black pr-10"
-				/>
-			</button>
+		<div className="relative min-h-screen w-full gap-4 p-10 flex justify-center items-center flex-col mb-10 bg-charcoal text-offwhite">
 			<ScrollDownButton />
 			<div className="min-h-screen flex justify-center items-center">
 				<div className="mx-auto grid grid-cols-1 md:grid-cols-2  mt-10 md:mt-0">
 					<div className="min-h-screen sm:min-h-0 flex justify-center items-start flex-col mb-5 space-y-10 mx-auto">
 						<div>
-							<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+							<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
 								Project
 							</h2>
-							<h1 className="text-4xl font-medium text-neutral-900">
+							<h1 className="font-serif text-4xl md:text-5xl mt-2">
 								{data.title}
 							</h1>
 						</div>
 						<div>
-							<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+							<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
 								Technology
 							</h2>
-							<p className="text-2xl font-normal text-neutral-900">
+							<p className="text-xl font-normal mt-2">
 								{data.tech.join(", ")}
 							</p>
 						</div>
 						<div>
-							<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+							<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
 								Year
 							</h2>
-							<p className="text-2xl font-normal text-neutral-900">
+							<p className="text-xl font-normal mt-2">
 								{data.year}
 							</p>
 						</div>
 						{data.preview && (
 							<div>
-								<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+								<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
 									Preview
 								</h2>
-								<p className="text-2xl font-normal text-neutral-900">
+								<p className="text-xl font-normal mt-2">
 									<a
 										href={data.preview}
 										target="_blank"
@@ -185,15 +173,15 @@ function Page(props) {
 						)}
 						{data.code && (
 							<div>
-								<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+								<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
 									Source Code
 								</h2>
-								<p className="text-2xl font-normal text-neutral-900">
+								<p className="text-xl font-normal mt-2">
 									<a
 										href={data.code}
 										target="_blank"
 										rel="noopener noreferrer">
-										Github{" "}
+										GitHub Repository{" "}
 										<FontAwesomeIcon
 											icon={faGithub}
 											className="ml-3"
@@ -204,13 +192,13 @@ function Page(props) {
 						)}
 					</div>
 					<div className="flex justify-start items-start flex-col mb-5 ">
-						<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+						<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
 							Description
 						</h2>
 						{data.desc.map((desc, index) => (
 							<p
 								key={index}
-								className="text-xl text-justify tracking-wide font-normal text-gray-500 mb-5">
+								className="text-lg text-justify leading-relaxed font-normal text-softgray mt-4">
 								{desc}
 							</p>
 						))}

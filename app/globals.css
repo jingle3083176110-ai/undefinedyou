@@ -1,13 +1,160 @@
 @import "tailwindcss";
 
+@theme {
+	/* Typography system: serif (editorial) / sans (UI) / mono (technical) */
+	--font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+	--font-display: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+	--font-serif: var(--font-newsreader), Georgia, serif;
+	--font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+	/* Light world */
+	--color-cream: #f7f3ec;
+	--color-warmwhite: #fbf9f5;
+	--color-ink: #1a1815;
+	--color-muted: #6f6a62;
+
+	/* Dark world */
+	--color-charcoal: #16150f;
+	--color-nearblack: #0e0d0a;
+	--color-softgray: #9c968c;
+	--color-offwhite: #ece7dd;
+
+	/* Single accent — replaceable */
+	--color-accent: #8c3b2e;
+}
+
+:root {
+	--font-poppins: "Avenir Next", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+	--font-jost: "Avenir Next", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+	--font-newsreader: "Iowan Old Style", "Songti SC", Georgia, serif;
+	--font-plex-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
 html {
 	font-size: clamp(13px, 0.89vw, 17px) !important;
 }
 
 body {
 	font-family: var(--font-poppins), sans-serif !important;
-	color: black;
-	background-color: rgb(230, 230, 230);
+	color: var(--color-ink);
+	background-color: var(--color-cream);
+}
+
+/* Large editorial faces need a little more air than a sans-serif headline.
+   Keep the same character while preventing ascenders and descenders from
+   colliding at every responsive size. */
+h1,
+h2,
+h3 {
+	text-wrap: balance;
+	text-rendering: optimizeLegibility;
+	font-variant-ligatures: none;
+}
+
+/* Article typography uses macOS Chinese typefaces for a book and poster feel. */
+.article-title {
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-weight: 600;
+}
+
+.article-section-title {
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-weight: 600;
+}
+
+.article-body {
+	font-family: "PingFang SC", "Hiragino Sans GB", var(--font-poppins), sans-serif;
+}
+
+/* Writing pages: editorial rhythm for Chinese long-form reading. */
+.article-lede {
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-size: clamp(1.18rem, 1.6vw, 1.5rem);
+	line-height: 1.8;
+	padding-left: 1.25rem;
+	border-left: 2px solid var(--color-accent);
+}
+
+.article-copy {
+	font-family: "PingFang SC", "Hiragino Sans GB", var(--font-poppins), sans-serif;
+	font-size: clamp(1.04rem, 1.25vw, 1.18rem);
+	line-height: 2;
+	color: #37332e;
+}
+
+.article-copy > p {
+	margin: 1.55rem 0;
+}
+
+.article-copy > p:first-child {
+	margin-top: 2.8rem;
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-size: clamp(1.35rem, 2vw, 1.72rem);
+	line-height: 1.75;
+	color: #24201c;
+}
+
+.article-copy > p:first-child::first-letter {
+	float: left;
+	margin: 0.16em 0.12em 0 0;
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", serif;
+	font-size: 3.35em;
+	font-weight: 600;
+	line-height: 0.78;
+	color: var(--color-accent);
+}
+
+.article-copy h2 {
+	margin: 4.2rem 0 1.5rem;
+	padding-top: 1.1rem;
+	border-top: 1px solid rgba(26, 24, 21, 0.16);
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -0.035em;
+	color: var(--color-ink);
+}
+
+.article-copy h3 {
+	margin: 2.8rem 0 1rem;
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-size: clamp(1.4rem, 2.5vw, 1.82rem);
+	font-weight: 600;
+	line-height: 1.38;
+	color: #2d2924;
+}
+
+.article-copy strong {
+	font-weight: 650;
+	color: #7a3126;
+}
+
+.article-copy blockquote {
+	margin: 2.8rem 0;
+	padding: 1.25rem 1.5rem;
+	border-left: 3px solid var(--color-accent);
+	background: rgba(140, 59, 46, 0.06);
+	font-family: "Songti SC", "STKaiti", "Kaiti SC", var(--font-newsreader), serif;
+	font-size: 1.2em;
+	line-height: 1.8;
+	color: #382d28;
+}
+
+.article-copy ol,
+.article-copy ul {
+	margin: 1.8rem 0;
+	padding-left: 1.5rem;
+}
+
+.article-copy li {
+	margin: 0.72rem 0;
+	padding-left: 0.45rem;
+	list-style: decimal;
+}
+
+.article-copy ul li {
+	list-style: square;
 }
 
 /* Hide scrollbar only for fullpage scroll pages */
@@ -28,19 +175,6 @@ html:has(body.fullpage-active) {
 	scrollbar-width: none; /* Firefox */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: var(--font-jost), sans-serif !important;
-}
-
-.title {
-	font-family: var(--font-jost), sans-serif !important;
-}
-
 .section {
 	height: 100vh;
 	display: flex;
@@ -49,16 +183,12 @@ h6 {
 }
 
 .navbar {
-	z-index: 49 !important;
+	z-index: 100 !important;
 }
 
 /* h2, h3, h4, h5, h6 {
 	@apply text-gray-600;
 } */
-
-span {
-	font-family: var(--font-jost), sans-serif;
-}
 
 li {
 	@apply list-none relative;

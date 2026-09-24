@@ -1,0 +1,22 @@
+{
+	"Entries": [
+		{
+			"date": "2026-09-15",
+			"title": "A placeholder fragment",
+			"photo": "",
+			"shortNote": "A short note, a photograph, or a reading fragment can live here. Not every entry needs to become an article.",
+			"location": "",
+			"tags": ["placeholder"],
+			"slug": "a-placeholder-fragment"
+		},
+		{
+			"date": "2026-08-03",
+			"title": "Reading note",
+			"photo": "",
+			"shortNote": "Something read, underlined, and kept.",
+			"location": "",
+			"tags": ["reading"],
+			"slug": "reading-note"
+		}
+	]
+}

@@ -1,8 +1,11 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
-module.exports = withBundleAnalyzer({
+const withMDX = require("@next/mdx")();
+module.exports = withMDX(
+	withBundleAnalyzer({
 	// your Next.js configuration
+	pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 	images: {
 		remotePatterns: [
 			{
@@ -53,4 +56,5 @@ module.exports = withBundleAnalyzer({
 				  }
 				: false,
 	},
-});
+	})
+);

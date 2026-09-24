@@ -1,6 +1,16 @@
 packages:
   - .
-  
+
+allowBuilds:
+  sharp: true
+
 onlyBuiltDependencies:
   - core-js
   - sharp
+
+overrides:
+  "@typescript-eslint/parser": "^8.54.0"
+  "@typescript-eslint/eslint-plugin": "^8.54.0"
+  "@typescript-eslint/type-utils": "^8.54.0"
+  "@typescript-eslint/utils": "^8.54.0"
+  "@typescript-eslint/typescript-estree": "^8.54.0"
