@@ -1,5 +1,6 @@
 import Link from "next/link";
 import milestones from "@/json/milestones.json";
+import LocalizedText from "@/components/LocalizedText";
 
 const entries = [...milestones.entries].sort(
   (a, b) => new Date(b.date) - new Date(a.date),
@@ -13,17 +14,17 @@ export default function MilestonesPage() {
           href="/journal"
           className="font-mono text-xs uppercase tracking-[0.24em] text-muted transition-colors hover:text-ink"
         >
-          ← Journal
+          ← <LocalizedText id="journal.back" />
         </Link>
         <header className="mt-12 border-b border-ink/15 pb-12">
           <p className="font-mono text-xs uppercase tracking-[0.28em] text-muted">
-            01 / A living timeline
+            01 / <LocalizedText id="journal.milestonesLabel" />
           </p>
           <h1 className="mt-7 font-display text-[clamp(3.5rem,8vw,7rem)] leading-[1.02] tracking-normal">
-            Milestones
+            <LocalizedText id="journal.milestones" />
           </h1>
           <p className="mt-8 max-w-xl font-sans text-lg leading-relaxed text-muted">
-            A running line through the moments and ideas that have stayed with me.
+            <LocalizedText id="journal.timelineSummary" />
           </p>
         </header>
 
@@ -42,7 +43,7 @@ export default function MilestonesPage() {
                   {entry.description}
                 </p>
                 <span className="mt-5 inline-block border-b border-ink pb-1 font-mono text-[10px] uppercase tracking-[0.2em]">
-                  Read entry ↗
+                  <LocalizedText id="journal.read" /> ↗
                 </span>
               </Link>
             </li>

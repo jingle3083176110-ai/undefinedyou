@@ -11,6 +11,7 @@ import Image from "next/image";
 import BlurImage from "@/public/image/placeholder/blur.jpg";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useLocale } from "@/components/LocaleProvider";
 
 function ProjectImage({ src, alt, index }) {
 	const [loaded, setLoaded] = useState(false);
@@ -78,6 +79,7 @@ function ScrollDownButton() {
 
 function Page(props) {
     const params = use(props.params);
+		const { t } = useLocale();
     const [data, setData] = useState(null);
     useEffect(() => {
 		const selectedData = jsonData.Projects.find(
@@ -130,7 +132,7 @@ function Page(props) {
 					<div className="min-h-screen sm:min-h-0 flex justify-center items-start flex-col mb-5 space-y-10 mx-auto">
 						<div>
 							<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
-								Project
+								{t("projects.project")}
 							</h2>
 							<h1 className="font-serif text-4xl md:text-5xl mt-2">
 								{data.title}
@@ -138,7 +140,7 @@ function Page(props) {
 						</div>
 						<div>
 							<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
-								Technology
+								{t("projects.technology")}
 							</h2>
 							<p className="text-xl font-normal mt-2">
 								{data.tech.join(", ")}
@@ -146,7 +148,7 @@ function Page(props) {
 						</div>
 						<div>
 							<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
-								Year
+								{t("projects.year")}
 							</h2>
 							<p className="text-xl font-normal mt-2">
 								{data.year}
@@ -174,14 +176,14 @@ function Page(props) {
 						{data.code && (
 							<div>
 								<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
-									Source Code
+								{t("projects.sourceCode")}
 								</h2>
 								<p className="text-xl font-normal mt-2">
 									<a
 										href={data.code}
 										target="_blank"
 										rel="noopener noreferrer">
-										GitHub Repository{" "}
+									{t("projects.repository")} {" "}
 										<FontAwesomeIcon
 											icon={faGithub}
 											className="ml-3"
@@ -193,7 +195,7 @@ function Page(props) {
 					</div>
 					<div className="flex justify-start items-start flex-col mb-5 ">
 						<h2 className="font-mono uppercase font-normal text-xs tracking-[0.3em] text-softgray">
-							Description
+							{t("projects.description")}
 						</h2>
 						{data.desc.map((desc, index) => (
 							<p

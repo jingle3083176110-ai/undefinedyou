@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "@/components/LocaleProvider";
 
 const navVariant = {
 	open: {
@@ -46,6 +47,15 @@ const itemVariants = {
 };
 
 const NavItems = ({ isNavOpen, setIsNavOpen, activeAnchor, onNavigate }) => {
+	const { t } = useLocale();
+	const items = [
+		["home", "nav.home"],
+		["about", "nav.about"],
+		["projects", "nav.projects"],
+		["writing", "nav.writing"],
+		["journal", "nav.journal"],
+		["contact", "nav.contact"],
+	];
 	const handleItemClick = () => {
 		setIsNavOpen(false);
 	};
@@ -77,91 +87,19 @@ const NavItems = ({ isNavOpen, setIsNavOpen, activeAnchor, onNavigate }) => {
 							variants={itemVariants}
 							animate={isNavOpen ? "open" : "closed"}
 							className="font-serif text-6xl text-ink ">
-							Menu
+							{t("nav.menu")}
 						</motion.h1>
-						<Link href="/#home" onClick={(event) => handleSectionClick(event, "home")}>
-							<div
-							className={`text-2xl font-medium ${activeAnchor === "home" ? "text-[#8c3b2e]" : "text-ink"}`}
-								onClick={handleItemClick}>
+						{items.map(([anchor, labelKey], index) => (
+							<Link key={anchor} href={`/#${anchor}`} onClick={(event) => handleSectionClick(event, anchor)}>
 								<motion.h2
-									className={activeAnchor === "home" ? "text-[#8c3b2e]" : "text-ink"}
+									className={`text-2xl font-medium ${activeAnchor === anchor ? "text-[#8c3b2e]" : "text-ink"}`}
 									variants={itemVariants}
 									animate={isNavOpen ? "open" : "closed"}
-									custom={0.1}>
-									Home
+									custom={0.1 + index * 0.1}>
+									{t(labelKey)}
 								</motion.h2>
-							</div>
-						</Link>
-						<Link href="/#about" onClick={(event) => handleSectionClick(event, "about")}>
-							<div
-								onClick={handleItemClick}
-								className={`text-2xl font-medium ${activeAnchor === "about" ? "text-[#8c3b2e]" : "text-ink"}`}>
-								<motion.h2
-									className={activeAnchor === "about" ? "text-[#8c3b2e]" : "text-ink"}
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.2}>
-									About
-								</motion.h2>
-							</div>
-						</Link>
-						<Link href="/#projects" onClick={(event) => handleSectionClick(event, "projects")}>
-							<div
-								onClick={handleItemClick}
-								className={`text-2xl font-medium ${activeAnchor === "projects" ? "text-[#8c3b2e]" : "text-ink"}`}>
-								<motion.h2
-									className={activeAnchor === "projects" ? "text-[#8c3b2e]" : "text-ink"}
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.3}>
-									Projects
-								</motion.h2>
-							</div>
-						</Link>
-
-						<Link href="/#writing" onClick={(event) => handleSectionClick(event, "writing")}>
-							<div
-								onClick={handleItemClick}
-								className={`text-2xl font-medium ${activeAnchor === "writing" ? "text-[#8c3b2e]" : "text-ink"}`}>
-								<motion.h2
-									className={activeAnchor === "writing" ? "text-[#8c3b2e]" : "text-ink"}
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.4}>
-								Writing
-								</motion.h2>
-							</div>
-						</Link>
-
-						<Link href="/#journal" onClick={(event) => handleSectionClick(event, "journal")}>
-								<div
-									onClick={handleItemClick}
-									className={`text-2xl font-medium ${activeAnchor === "journal" ? "text-[#8c3b2e]" : "text-ink"}`}
->
-									<motion.h2
-										className={activeAnchor === "journal" ? "text-[#8c3b2e]" : "text-ink"}
-										variants={itemVariants}
-										animate={isNavOpen ? "open" : "closed"}
-										custom={0.5}
-									>
-									Journal
-									</motion.h2>
-							</div>
-						</Link>
-
-						<Link href="/#contact" onClick={(event) => handleSectionClick(event, "contact")}>
-							<div
-								onClick={handleItemClick}
-								className={`text-2xl font-medium ${activeAnchor === "contact" ? "text-[#8c3b2e]" : "text-ink"}`}>
-								<motion.h2
-									className={activeAnchor === "contact" ? "text-[#8c3b2e]" : "text-ink"}
-									variants={itemVariants}
-									animate={isNavOpen ? "open" : "closed"}
-									custom={0.6}>
-									Contact
-								</motion.h2>
-							</div>
-						</Link>
+							</Link>
+						))}
 					</div>
 				</div>
 			</motion.div>
@@ -175,6 +113,7 @@ const Navbar = () => {
 	const [activeAnchor, setActiveAnchor] = useState("home");
 	const pathname = usePathname();
 	const router = useRouter();
+	const { locale, setLocale, t } = useLocale();
 	const isHome = pathname === "/";
 	const showBack = !isHome;
 
@@ -209,7 +148,7 @@ const Navbar = () => {
 				{showBack && (
 					<button
 						type="button"
-						aria-label="Go back"
+						aria-label={t("nav.back")}
 						onClick={() => router.back()}
 						className="flex h-8 w-8 items-center justify-center font-sans text-2xl leading-none text-ink transition-transform hover:-translate-x-1"
 					>
@@ -221,9 +160,14 @@ const Navbar = () => {
 					undefinedyou
 				</h1>
 				</div>
-				<div className="flex flex-row items-center">
+				<div className="flex flex-row items-center gap-3">
+					<div role="group" aria-label={t("locale.label")} className="flex overflow-hidden rounded-full border border-ink/25 p-0.5 font-mono text-[10px] tracking-[0.14em]">
+						{[["en", "EN"], ["zh", "中"]].map(([value, label]) => (
+							<button key={value} type="button" onClick={() => setLocale(value)} aria-pressed={locale === value} className={`rounded-full px-2.5 py-1 transition-colors ${locale === value ? "bg-ink text-cream" : "text-muted hover:text-ink"}`}>{label}</button>
+						))}
+					</div>
 					<button
-						aria-label={isNavOpen ? "Close menu" : "Open menu"}
+						aria-label={isNavOpen ? t("nav.close") : t("nav.open")}
 						className="burger button flex flex-col justify-center items-center space-y-1.5 "
 						onClick={toggleNav}>
 					<div

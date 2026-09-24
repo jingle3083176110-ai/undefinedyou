@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getFinanceEntries } from "@/lib/finance";
+import LocalizedText from "@/components/LocalizedText";
 
 function InlineText({ parts }) {
   return parts.map((part, index) => part.emphasis
@@ -12,14 +13,14 @@ export default function MoneyNotesPage() {
   return (
     <main className="min-h-screen bg-[#20211d] px-6 pb-28 pt-32 text-[#f2efe7] md:px-16 lg:px-24">
       <div className="mx-auto max-w-6xl">
-        <Link href="/journal" className="font-mono text-xs uppercase tracking-[0.24em] text-[#bdb9ac] transition-colors hover:text-white">← Journal</Link>
+        <Link href="/journal" className="font-mono text-xs uppercase tracking-[0.24em] text-[#bdb9ac] transition-colors hover:text-white">← <LocalizedText id="journal.back" /></Link>
         <header className="mt-14 grid gap-10 border-b border-white/20 pb-14 md:grid-cols-[1.2fr_0.8fr] md:items-end">
-          <div><p className="font-mono text-xs uppercase tracking-[0.28em] text-[#bdb9ac]">03 / A quiet ledger</p><h1 className="mt-7 font-display text-[clamp(3.5rem,8vw,7rem)] leading-[1.02] tracking-normal">Capital Journal</h1></div>
-          <p className="max-w-md font-serif text-xl leading-relaxed text-[#cfc9bd]">A private archive for financial reading, first principles, and ideas that need time before they become convictions.</p>
+          <div><p className="font-mono text-xs uppercase tracking-[0.28em] text-[#bdb9ac]">03 / <LocalizedText id="journal.moneyLabel" /></p><h1 className="mt-7 font-display text-[clamp(3.5rem,8vw,7rem)] leading-[1.02] tracking-normal"><LocalizedText id="journal.money" /></h1></div>
+          <p className="max-w-md font-serif text-xl leading-relaxed text-[#cfc9bd]"><LocalizedText id="journal.capitalSummary" /></p>
         </header>
 
         <nav className="mt-16 grid gap-px border border-white/20 bg-white/20 md:grid-cols-3">
-          {entries.map((entry) => <a key={entry.slug} href={`#${entry.slug}`} className="group flex min-h-64 flex-col justify-between bg-[#20211d] p-7 transition-colors hover:bg-[#292a25]"><span className="font-mono text-xs tracking-[0.22em] text-[#bdb9ac]">{entry.number}</span><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#bdb9ac]">{entry.label}</p><h2 className="mt-3 font-display text-4xl leading-none transition-transform duration-300 group-hover:translate-x-1">{entry.title}</h2><p className="mt-5 font-sans leading-relaxed text-[#cfc9bd]">{entry.description}</p><p className="mt-10 font-mono text-[10px] uppercase tracking-[0.2em] text-[#d9bf8b]">Open notes ↓</p></div></a>)}
+          {entries.map((entry) => <a key={entry.slug} href={`#${entry.slug}`} className="group flex min-h-64 flex-col justify-between bg-[#20211d] p-7 transition-colors hover:bg-[#292a25]"><span className="font-mono text-xs tracking-[0.22em] text-[#bdb9ac]">{entry.number}</span><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#bdb9ac]">{entry.label}</p><h2 className="mt-3 font-display text-4xl leading-none transition-transform duration-300 group-hover:translate-x-1">{entry.title}</h2><p className="mt-5 font-sans leading-relaxed text-[#cfc9bd]">{entry.description}</p><p className="mt-10 font-mono text-[10px] uppercase tracking-[0.2em] text-[#d9bf8b]"><LocalizedText id="journal.openNotes" /> ↓</p></div></a>)}
         </nav>
 
         <section className="mt-24 space-y-28">

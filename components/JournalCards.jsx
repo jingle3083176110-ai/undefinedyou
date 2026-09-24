@@ -1,36 +1,37 @@
-import Link from "next/link";
+"use client";
 
-const sections = [
+import Link from "next/link";
+import { useLocale } from "@/components/LocaleProvider";
+
+const sectionKeys = [
   {
     number: "01",
-    title: "Milestones",
-    label: "A living timeline",
-    description:
-      "Important moments, turning points, and the writing that helped make sense of them.",
+    title: "journal.milestones",
+    label: "journal.milestonesLabel",
+    description: "journal.milestonesSummary",
     href: "/journal/milestones",
   },
   {
     number: "02",
-    title: "Reading Room",
-    label: "A personal shelf",
-    description:
-      "Books kept close, pages underlined, and notes written after the reading slows down.",
+    title: "journal.reading",
+    label: "journal.readingLabel",
+    description: "journal.readingSummary",
     href: "/journal/reading",
   },
   {
     number: "03",
-    title: "Capital Journal",
-    label: "A quiet ledger",
-    description:
-      "Reading notes, financial ideas, and the questions worth revisiting over time.",
+    title: "journal.money",
+    label: "journal.moneyLabel",
+    description: "journal.moneySummary",
     href: "/journal/money",
   },
 ];
 
 export default function JournalCards() {
+	const { t } = useLocale();
   return (
     <div className="grid gap-px border border-ink/15 bg-ink/15 md:grid-cols-3">
-      {sections.map((section) => (
+      {sectionKeys.map((section) => (
         <Link
           key={section.href}
           href={section.href}
@@ -44,13 +45,13 @@ export default function JournalCards() {
           </div>
           <div>
             <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-              {section.label}
+              {t(section.label)}
             </p>
             <h3 className="font-display text-4xl leading-none md:text-5xl">
-              {section.title}
+              {t(section.title)}
             </h3>
             <p className="mt-5 max-w-xs font-sans text-sm leading-relaxed text-muted">
-              {section.description}
+              {t(section.description)}
             </p>
           </div>
         </Link>

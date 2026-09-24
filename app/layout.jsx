@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ClientTopProgressBar from "@/components/ClientTopProgressBar";
+import { LocaleProvider } from "@/components/LocaleProvider";
 
 export const metadata = {
   metadataBase: new URL("https://undefinedyou.com"),
@@ -40,10 +41,12 @@ export default function RootLayout({ children }) {
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
-				<ClientTopProgressBar />
-				<Navbar />
-				{children}
-				<Analytics />
+				<LocaleProvider>
+					<ClientTopProgressBar />
+					<Navbar />
+					{children}
+					<Analytics />
+				</LocaleProvider>
 			</body>
 		</html>
 	);

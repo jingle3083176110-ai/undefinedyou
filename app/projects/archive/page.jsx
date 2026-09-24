@@ -6,8 +6,10 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Projects from "@/json/data.json";
 import Link from "next/link";
+import { useLocale } from "@/components/LocaleProvider";
 
 export default function Page() {
+	const { t } = useLocale();
 	const projects = Projects.Projects;
 	return (
 		<>
@@ -18,14 +20,14 @@ export default function Page() {
 						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}>
-						Archive
+						{t("projects.archive")}
 					</motion.h1>
 					<motion.p
 						className="font-mono text-xs tracking-[0.3em] uppercase text-softgray mt-4 self-start"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.6, delay: 0.15 }}>
-						Every project, listed
+						{t("projects.archiveSummary")}
 					</motion.p>
 
 					<div className="w-full mt-16 border-t border-offwhite/15">

@@ -6,14 +6,16 @@ import Button from "@/components/Button";
 
 import ProjectCard from "./components/ProjectCard";
 import Projects from "@/json/data.json";
+import { useLocale } from "@/components/LocaleProvider";
 
 const category = {
-	1: "Web Development",
-	2: "AI & Machine Learning",
-	9: "Other",
+	1: "projects.web",
+	2: "projects.ai",
+	9: "projects.other",
 };
 
 export default function Page() {
+	const { t } = useLocale();
 	const [activeCategory, setActiveCategory] = useState(9);
 	const projects = Projects.Projects.filter((item) => item.show === true);
 
@@ -29,22 +31,21 @@ export default function Page() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}>
-						Projects
+						{t("projects.label")}
 					</motion.p>
 					<motion.h1
 						className="font-serif text-5xl md:text-7xl leading-[1.15]"
 						initial={{ opacity: 0, y: 40 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.7, delay: 0.1 }}>
-						Things I build.
+						{t("projects.title")}
 					</motion.h1>
 					<motion.p
 						className="text-lg mt-6 text-softgray max-w-2xl leading-relaxed"
 						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.2 }}>
-						Projects, experiments, and things I&apos;m learning through
-						building.
+						{t("projects.summary")}
 					</motion.p>
 				</div>
 
@@ -63,7 +64,7 @@ export default function Page() {
 									: "border-offwhite/30 text-softgray hover:border-offwhite hover:text-offwhite"
 							}`}
 							onClick={() => setActiveCategory(key)}>
-							{category[key]}
+							{t(category[key])}
 						</button>
 					))}
 				</motion.div>
