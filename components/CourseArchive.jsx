@@ -46,14 +46,14 @@ export default function CourseArchive({ terms }) {
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
-                    <div className="grid gap-7 border-t border-offwhite/10 pb-8 pt-7 text-base leading-8 text-softgray md:grid-cols-2 md:gap-x-12">
-                      <dl className="space-y-4">
-                        <div><dt className="font-mono text-xs uppercase tracking-[.2em] text-[#e7c98a]">{t("academic.institution")}</dt><dd>{valueOrPending(course.institution, t("academic.toBeAdded"))}</dd></div>
-                        <div><dt className="font-mono text-xs uppercase tracking-[.2em] text-[#e7c98a]">{t("academic.instructor")}</dt><dd>{valueOrPending(course.instructor, t("academic.toBeAdded"))}</dd></div>
+                    <div className="grid gap-8 border-t border-offwhite/15 pb-9 pt-8 text-[1.05rem] leading-7 text-offwhite/80 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.5fr)] md:gap-x-14 md:leading-8">
+                      <dl className="space-y-6">
+                        <div><dt className="font-mono text-sm uppercase tracking-[.2em] text-[#f0cf8c]">{t("academic.institution")}</dt><dd className="mt-1.5">{valueOrPending(course.institution, t("academic.toBeAdded"))}</dd></div>
+                        <div><dt className="font-mono text-sm uppercase tracking-[.2em] text-[#f0cf8c]">{t("academic.instructor")}</dt><dd className="mt-1.5">{valueOrPending(course.instructor, t("academic.toBeAdded"))}</dd></div>
                       </dl>
                       <dl className="space-y-4">
-                        <div><dt className="font-mono text-xs uppercase tracking-[.2em] text-[#e7c98a]">{t("academic.description")}</dt><dd>{valueOrPending(course.description, t("academic.toBeAdded"))}</dd></div>
-                        <div><dt className="font-mono text-xs uppercase tracking-[.2em] text-[#e7c98a]">{t("academic.notes")}</dt><dd>{course.notesUrl ? <a className="border-b border-offwhite/50 text-offwhite transition-colors hover:text-[#e7c98a]" href={course.notesUrl} target="_blank" rel="noreferrer">{t("academic.open")} ↗</a> : t("academic.notesPending")}</dd></div>
+                        <div><dt className="font-mono text-sm uppercase tracking-[.2em] text-[#f0cf8c]">{t("academic.description")}</dt><dd className="mt-1.5 max-w-3xl">{valueOrPending(course.description, t("academic.toBeAdded"))}</dd></div>
+                        <div><dt className="font-mono text-sm uppercase tracking-[.2em] text-[#f0cf8c]">{t("academic.notes")}</dt><dd className="mt-1.5">{course.notesUrl ? <a className="border-b border-offwhite/60 text-offwhite transition-colors hover:text-[#f0cf8c]" href={course.notesUrl} target="_blank" rel="noreferrer">{t("academic.open")} ↗</a> : t("academic.notesPending")}</dd></div>
                       </dl>
                     </div>
                   </motion.div>
