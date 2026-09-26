@@ -37,12 +37,11 @@ function CollectionCard({ collection, kind, photos, locale, t }) {
   const title = locale === "zh" ? collection.titleZh : collection.title;
   const intro = locale === "zh" ? collection.introZh : collection.intro;
   const location = locale === "zh" ? collection.locationZh : collection.location;
+  const cover = photos.find((photo) => photo.id === collection.coverId) || photos[0];
   return (
-    <motion.div layout initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 18 }} transition={transition} className="overflow-hidden rounded-sm border border-ink/15 bg-warmwhite">
-      <div className={`grid ${photos.length === 1 ? "grid-cols-1" : "grid-cols-2"} gap-px bg-ink/10`}>
-        {photos.slice(0, 3).map((photo, index) => <img key={photo.id} src={photo.src} alt={photo.alt} className={`${photos.length === 1 ? "aspect-[16/9]" : index === 2 ? "col-span-2 aspect-[2/1]" : "aspect-[4/3]"} h-full w-full object-cover`} />)}
-      </div>
-      <div className="p-6 md:p-8"><p className="font-mono text-[10px] uppercase tracking-[.22em] text-muted">{kind === "workshops" ? t("photography.workshops") : t("photography.themes")}</p><h2 className="mt-4 font-serif text-3xl leading-tight text-ink md:text-4xl">{title}</h2><p className="mt-4 max-w-xl text-sm leading-7 text-muted">{intro}</p><p className="mt-4 font-mono text-[10px] uppercase tracking-[.16em] text-muted">{collection.dateRange ? formatDate(collection.dateRange, locale, "") : ""}{collection.dateRange && location ? " · " : ""}{location || ""}</p><Link href={`/journal/photography/${kind}/${collection.slug}`} className="mt-7 inline-flex border-b border-ink/50 pb-2 font-mono text-[10px] uppercase tracking-[.2em] text-ink transition-colors hover:text-accent">{t("photography.viewCollection")} ↗</Link></div>
+    <motion.div layout initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 18 }} transition={transition} className="grid overflow-hidden rounded-sm border border-ink/15 bg-warmwhite md:grid-cols-[minmax(240px,42%)_1fr]">
+      {cover && <div className="bg-ink/5"><img src={cover.src} alt={cover.alt} className="h-full min-h-56 w-full object-cover md:min-h-72" /></div>}
+      <div className="flex flex-col justify-center p-6 md:p-10"><p className="font-mono text-xs uppercase tracking-[.22em] text-muted">{kind === "workshops" ? t("photography.workshops") : t("photography.themes")}</p><h2 className="mt-4 font-serif text-3xl leading-tight text-ink md:text-5xl">{title}</h2><p className="mt-4 max-w-xl text-base leading-7 text-muted">{intro}</p><p className="mt-5 font-mono text-xs uppercase tracking-[.16em] text-muted">{collection.dateRange ? formatDate(collection.dateRange, locale, "") : ""}{collection.dateRange && location ? " · " : ""}{location || ""}</p><Link href={`/journal/photography/${kind}/${collection.slug}`} className="mt-8 inline-flex self-start border-b border-ink/50 pb-2 font-mono text-xs uppercase tracking-[.2em] text-ink transition-colors hover:text-accent">{t("photography.viewCollection")} ↗</Link></div>
     </motion.div>
   );
 }
