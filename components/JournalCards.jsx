@@ -37,14 +37,14 @@ export default function JournalCards() {
           href={section.href}
           className="group flex min-h-72 flex-col bg-warmwhite p-7 transition-colors duration-300 hover:bg-[#eee8dd] md:min-h-80"
         >
-          <div className="flex items-start justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
+          <div className="flex items-start justify-between font-mono text-xs uppercase tracking-[0.25em] text-muted">
             <span>{section.number}</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
               ↗
             </span>
           </div>
           <div className="mt-16">
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-muted">
               {t(section.label)}
             </p>
             <h3 className="font-display text-4xl leading-none md:text-5xl">
