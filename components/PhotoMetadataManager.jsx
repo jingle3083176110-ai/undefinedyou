@@ -8,6 +8,16 @@ function filename(src) {
   return src.split("/").pop() || src;
 }
 
+const locationTerms = [
+  ["中国香港", "Hong Kong, China"], ["香港", "Hong Kong"], ["中国深圳", "Shenzhen, China"], ["深圳市", "Shenzhen"], ["深圳", "Shenzhen"], ["珠海市", "Zhuhai"], ["珠海", "Zhuhai"], ["逸夫书院", "Shaw College"], ["中大", "CUHK"], ["校园", "Campus"], ["大学城", "University Town"], ["海边", "Seaside"], ["湖边", "Lakeside"], ["公园", "Park"], ["书院", "College"], ["街道", "Street"], ["路", "Road"], ["山", "Mountain"], ["桥", "Bridge"], ["餐厅", "Restaurant"], ["中国", "China"],
+];
+
+function englishLocation(value) {
+  let result = value.trim();
+  for (const [source, target] of locationTerms) result = result.replaceAll(source, target);
+  return result.replace(/[，、]/g, ", ").replace(/\s+/g, " ").trim();
+}
+
 export default function PhotoMetadataManager({ photos }) {
   const [query, setQuery] = useState("");
   const [metadata, setMetadata] = useState(() => {
@@ -51,7 +61,7 @@ export default function PhotoMetadataManager({ photos }) {
               <p className="break-all font-mono text-[11px] leading-5 text-muted">{photo.id}</p>
               <p className="break-all text-xs text-muted">{filename(photo.src)}</p>
               <label className="block text-xs uppercase tracking-[.12em] text-muted">Location<input value={saved.location ?? photo.location ?? ""} onChange={(event) => update(photo.id, "location", event.target.value)} className="mt-1 w-full border-b border-ink/20 bg-transparent py-1 text-sm normal-case tracking-normal text-ink outline-none focus:border-ink" /></label>
-              <label className="block text-xs uppercase tracking-[.12em] text-muted">中文地点<input value={saved.locationZh ?? photo.locationZh ?? ""} onChange={(event) => update(photo.id, "locationZh", event.target.value)} className="mt-1 w-full border-b border-ink/20 bg-transparent py-1 text-sm normal-case tracking-normal text-ink outline-none focus:border-ink" /></label>
+              <label className="block text-xs uppercase tracking-[.12em] text-muted">中文地点<input value={saved.locationZh ?? photo.locationZh ?? ""} onChange={(event) => { const value = event.target.value; const next = { ...metadata, [photo.id]: { ...metadata[photo.id], locationZh: value, location: englishLocation(value) } }; setMetadata(next); window.localStorage.setItem(storageKey, JSON.stringify(next)); }} className="mt-1 w-full border-b border-ink/20 bg-transparent py-1 text-sm normal-case tracking-normal text-ink outline-none focus:border-ink" /></label>
               <p className="text-xs text-muted">Date: {photo.date || "Not recorded"}</p>
             </div>
           </article>;
