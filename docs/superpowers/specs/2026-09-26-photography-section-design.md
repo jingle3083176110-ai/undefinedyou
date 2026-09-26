@@ -2,30 +2,38 @@
 
 ## Goal
 
-Replace Journal's third financial card with a Photography card. The photography page opens directly into a photo gallery and can switch to themed photo stories without navigating away.
+Replace Journal's third financial card with a Photography card. The photography page opens directly into a time-ordered photo gallery and can switch to themes or workshops without navigating away.
 
 ## Information architecture
 
 - Journal card 03 becomes `Photography / 摄影` and links to `/journal/photography`.
 - The previous finance card, its copy, and the `/journal/money` navigation entry are removed from Journal surfaces.
-- `/journal/photography` has one page with two display modes:
-  - **Gallery** is the default mode and shows individual photographs.
-  - **Themes** shows photo stories for activities, events, trips, or other connected moments.
+- `/journal/photography` has one page with three display modes:
+  - **Gallery** is the default mode and shows every photograph in reverse chronological order.
+  - **Themes** groups photographs into long-running subjects such as food, landscape, and people.
+  - **Workshops** groups photographs by a particular activity or event.
 
 ## Gallery mode
 
 - The page opens directly to the Gallery wall; there is no intermediate landing page.
 - Images use a responsive editorial masonry grid. Portrait and landscape images retain their own aspect ratios.
+- Gallery is a derived view: it reads photographs from every Theme and Workshop folder, then orders them by the photograph date, newest first.
 - A photo caption is intentionally compact: date, place, and a short note.
 - On pointer devices, caption content fades in at the lower edge of a photograph on hover or focus.
 - Selecting an image opens an immersive viewer with the full image, caption, and previous/next navigation.
 
 ## Themes mode
 
-- A two-option segmented control in the page header switches between `Gallery` and `Themes`.
-- Each story card contains a title, date range, location, short introduction, and a two- or three-image preview strip.
-- Selecting a story opens a dedicated story route containing its short introductory note and the full sequence of images.
-- Gallery images and story previews can reference the same source image records.
+- A three-option segmented control in the page header switches between `Gallery`, `Themes`, and `Workshops`.
+- Each theme folder contains a title, short introduction, and a two- or three-image preview strip.
+- Selecting a theme opens a dedicated route containing its complete image sequence and a brief note.
+
+## Workshops mode
+
+- Each workshop folder represents one activity or event rather than a permanent subject.
+- A workshop card contains a feature image, event name, date range, location, activity description, and a photo preview strip.
+- Selecting a workshop opens a dedicated route containing its activity introduction and full photo set.
+- Gallery images, theme previews, and workshop previews reference the same source image records.
 
 ## Motion and interaction
 
