@@ -20,10 +20,10 @@ const sectionKeys = [
   },
   {
     number: "03",
-    title: "journal.money",
-    label: "journal.moneyLabel",
-    description: "journal.moneySummary",
-    href: "/journal/money",
+    title: "photography.cardTitle",
+    label: "photography.label",
+    description: "photography.summary",
+    href: "/journal/photography",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function JournalCards() {
         <Link
           key={section.href}
           href={section.href}
-          className="group flex min-h-72 flex-col justify-between bg-warmwhite p-7 transition-colors duration-300 hover:bg-[#eee8dd] md:min-h-80"
+          className="group flex min-h-72 flex-col bg-warmwhite p-7 transition-colors duration-300 hover:bg-[#eee8dd] md:min-h-80"
         >
           <div className="flex items-start justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
             <span>{section.number}</span>
@@ -43,7 +43,7 @@ export default function JournalCards() {
               ↗
             </span>
           </div>
-          <div>
+          <div className="mt-16">
             <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
               {t(section.label)}
             </p>

@@ -52,7 +52,7 @@ const NavItems = ({ isNavOpen, setIsNavOpen, activeAnchor, onNavigate }) => {
 		["home", "nav.home"],
 		["about", "nav.about"],
 		["projects", "nav.projects"],
-		["writing", "nav.writing"],
+		["writing", "nav.academic"],
 		["journal", "nav.journal"],
 		["contact", "nav.contact"],
 	];

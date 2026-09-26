@@ -16,7 +16,7 @@ const navItems = [
 	{ icon: faHome, labelKey: "nav.home", anchor: "home" },
 	{ icon: faUser, labelKey: "nav.about", anchor: "about" },
 	{ icon: faFolderOpen, labelKey: "nav.projects", anchor: "projects" },
-	{ icon: faPenNib, labelKey: "nav.writing", anchor: "writing" },
+	{ icon: faPenNib, labelKey: "nav.academic", anchor: "writing" },
 	{ icon: faBookOpen, labelKey: "nav.journal", anchor: "journal" },
 	{ icon: faEnvelope, labelKey: "nav.contact", anchor: "contact" },
 ];
