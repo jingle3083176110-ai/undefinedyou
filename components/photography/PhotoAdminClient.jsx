@@ -25,6 +25,7 @@ export default function PhotoAdminClient() {
   const [collectionCreateRequest, setCollectionCreateRequest] = useState(0);
   const [status, setStatus] = useState("all");
   const [type, setType] = useState("all");
+  const [collectionFilter, setCollectionFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [editing, setEditing] = useState(null);
   const [message, setMessage] = useState("");
@@ -250,7 +251,9 @@ export default function PhotoAdminClient() {
     (status === "all" || (status === "published" ? photo.published !== false : photo.published === false))
     && `${photo.id} ${photo.title || ""} ${photo.title_zh || ""} ${photo.location || ""} ${photo.location_zh || ""} ${photo.note || ""} ${photo.note_zh || ""} ${photo.alt || ""}`.toLowerCase().includes(normalizedQuery)
   ))].sort((left, right) => {
-    const collectionMatch = (photo) => type === "all" || (photo.collectionIds || []).some((id) => collections.find((collection) => collection.id === id)?.collection_type === type);
+    const collectionMatch = (photo) => collectionFilter === "all"
+      ? type === "all" || (photo.collectionIds || []).some((id) => collections.find((collection) => collection.id === id)?.collection_type === type)
+      : (photo.collectionIds || []).includes(collectionFilter);
     return Number(collectionMatch(right)) - Number(collectionMatch(left));
   });
 
@@ -327,6 +330,8 @@ export default function PhotoAdminClient() {
               onPublish={() => bulk(true)}
               onUnpublish={() => bulk(false)}
               onReplaceCollections={replaceCollections}
+              collectionFilter={collectionFilter}
+              onCollectionFilter={setCollectionFilter}
               busy={batchBusy}
               summary={batchSummary}
             />

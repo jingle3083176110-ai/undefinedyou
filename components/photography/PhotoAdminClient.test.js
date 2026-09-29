@@ -164,6 +164,13 @@ test("photo admin exposes a selection-aware batch toolbar and collection replace
   assert.match(source, /setSelected\(\(current\) => current\.filter/);
 });
 
+test("photo toolbar exposes a working collection filter control", async () => {
+  const toolbar = await fs.readFile(batchToolbarPath, "utf8");
+  assert.match(toolbar, /onCollectionFilter/);
+  assert.match(toolbar, /value=\{collectionFilter\}/);
+  assert.match(toolbar, /筛选所属主题/);
+});
+
 test("photo admin exposes independent Themes and Workshops collection views", async () => {
   const source = await fs.readFile(componentPath, "utf8");
   const shell = await fs.readFile(shellPath, "utf8");

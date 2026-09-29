@@ -5,6 +5,8 @@ export default function PhotoBatchToolbar({
   visibleCount = 0,
   visibleSelectedCount = 0,
   collections = [],
+  collectionFilter = "all",
+  onCollectionFilter,
   onSelectAll,
   onClear,
   onPublish,
@@ -25,6 +27,13 @@ export default function PhotoBatchToolbar({
         <button type="button" onClick={onClear} disabled={busy}>清空选择</button>
         <button type="button" onClick={onPublish} disabled={busy}>批量上架</button>
         <button type="button" onClick={onUnpublish} disabled={busy}>批量下架</button>
+        <label className="photo-admin-batch-collection-control">
+          <span>筛选所属主题 / Workshop</span>
+          <select aria-label="筛选所属主题或 Workshop" value={collectionFilter} disabled={busy} onChange={(event) => onCollectionFilter?.(event.target.value)}>
+            <option value="all">全部照片</option>
+            {collections.map((collection) => <option key={collection.id} value={collection.id}>{collection.title_zh || collection.title || collection.slug}</option>)}
+          </select>
+        </label>
         <label className="photo-admin-batch-collection-control">
           <span>替换所属主题 / Workshop</span>
           <select aria-label="批量替换所属主题或 Workshop" defaultValue="" disabled={busy} onChange={(event) => {
