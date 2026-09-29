@@ -86,7 +86,6 @@ test("photo admin shell exposes semantic desktop navigation and account actions"
   assert.match(source, /<main/);
   assert.match(source, /aria-current/);
   assert.match(source, /摄影总览/);
-  assert.match(source, /全部照片/);
   assert.match(source, /上传照片/);
   assert.match(source, /退出登录/);
 });

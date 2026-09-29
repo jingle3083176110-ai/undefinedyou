@@ -5,7 +5,6 @@ import "./photo-admin.css";
 
 const NAV_ITEMS = [
   { id: "overview", label: "摄影总览", description: "Overview" },
-  { id: "library", label: "全部照片", description: "Library" },
   { id: "upload", label: "上传照片", description: "Upload" },
   { id: "theme", label: "Themes", description: "Themes" },
   { id: "workshop", label: "Workshops", description: "Workshops" },
