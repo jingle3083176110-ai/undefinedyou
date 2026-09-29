@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +25,7 @@ const contacts = [
 
 function ContactIcon({ item }) {
   if (item.id === "xiaohongshu") {
-    return <img src="https://cdn.simpleicons.org/xiaohongshu/f5f0e8" alt="" className="h-7 w-7" />;
+    return <Image src="https://cdn.simpleicons.org/xiaohongshu/f5f0e8" alt="" width={28} height={28} className="h-7 w-7" />;
   }
   if (item.id === "wechat") {
     return (
@@ -77,7 +78,7 @@ export default function ContactOrbit() {
               ))}
             </div>
           ) : <p className="mt-2 font-sans text-sm text-offwhite">{active.valueKey ? t(active.valueKey) : active.value}</p>}
-          {active.media && <img src={active.media} alt={active.id === "wechat" ? `${t(active.labelKey)} QR code` : "Xiaohongshu profile"} className="mt-5 max-h-72 w-auto rounded-lg" />}
+          {active.media && <Image src={active.media} alt={active.id === "wechat" ? `${t(active.labelKey)} QR code` : "Xiaohongshu profile"} width={258} height={258} className="mt-5 max-h-72 w-auto rounded-lg" />}
         </div>
         {active.href ? <a href={active.href} target="_blank" rel="noreferrer" className="font-mono text-[10px] uppercase tracking-[0.18em] text-offwhite underline underline-offset-4">{t("contact.open")} ↗</a> : active.emails ? <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-softgray">{t("contact.chooseAddress")}</span> : active.media ? null : <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-softgray">{t("contact.awaiting")}</span>}
       </div>

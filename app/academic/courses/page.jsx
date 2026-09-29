@@ -1,8 +1,19 @@
 import CourseArchive from "@/components/CourseArchive";
 import LocalizedText from "@/components/LocalizedText";
-import { courseTerms } from "@/lib/courses";
+import { getCourses } from "@/lib/content/repository";
 
-export default function CoursesPage() {
+function groupCourses(courses) {
+  const groups = new Map();
+  for (const course of courses) {
+    const term = course.term;
+    if (!groups.has(term.id)) groups.set(term.id, { id: term.id, year: term.year, term: term.name, termZh: term.nameZh, courses: [] });
+    groups.get(term.id).courses.push(course);
+  }
+  return [...groups.values()];
+}
+
+export default async function CoursesPage() {
+  const courseTerms = groupCourses(await getCourses());
   return (
     <main className="min-h-screen bg-warmwhite px-6 pb-24 pt-32 md:px-16 lg:px-24">
       <div className="mx-auto max-w-6xl">

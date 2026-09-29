@@ -5,7 +5,8 @@ module.exports = {
 	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://undefinedyou.com",
 	generateRobotsTxt: true,
 	generateIndexSitemap: false,
-	exclude: ["/404", "/500"],
+	// These routes are internal/legacy surfaces and should not be advertised to crawlers.
+	exclude: ["/404", "/500", "/photography/manage", "/journal/money", "/writing", "/writing/*"],
 	additionalPaths: async () => {
 		const now = new Date().toISOString();
 		const staticPages = [

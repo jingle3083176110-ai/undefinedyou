@@ -5,13 +5,14 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
 import { useLocale } from "@/components/LocaleProvider";
+import { navigateToContact } from "@/lib/contact-navigation";
 
 export default function Footer() {
 	const { t } = useLocale();
 	return (
 		<div className="flex justify-center items-center flex-col mt-5 overflow-hidden">
 			<div className="flex justify-center items-center flex-col mt-5 self-center min-h-[50vh] border-b-2 min-w-[80vw] ">
-				<Link href="/#contact">
+				<Link href="/#contact" onClick={(event) => { event.preventDefault(); navigateToContact(window); }}>
 					<motion.h2
 						className="text-xl font-medium mt-3 text-center text-gray-400  hover:underline whitespace-nowrap leading-none md:tracking-[0.5rem]"
 						initial={{

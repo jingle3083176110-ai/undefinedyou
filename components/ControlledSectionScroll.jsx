@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useFullPage } from "@alvalens/react-fullpage-snap";
+import { isBrowserZoomed } from "@/lib/fullpage-scroll";
 
 const SCROLL_THRESHOLD = 48;
 const GESTURE_SETTLE_MS = 980;
@@ -18,6 +19,7 @@ export default function ControlledSectionScroll() {
 		};
 
 		const handleWheel = (event) => {
+			if (isBrowserZoomed({ scale: window.visualViewport?.scale, innerWidth: window.innerWidth, outerWidth: window.outerWidth })) return;
 			event.preventDefault();
 			if (locked.current) return;
 

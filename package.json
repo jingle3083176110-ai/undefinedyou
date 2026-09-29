@@ -15,7 +15,10 @@
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap",
-    "generate-sitemap": "next-sitemap"
+    "generate-sitemap": "next-sitemap",
+    "test": "node --test app/api/admin/photos/route.test.js scripts/tests/photo-id-route.test.js scripts/tests/photo-cms-data.test.js components/photography/PhotoAdminClient.test.js lib/fullpage-reset.test.js lib/fullpage-scroll.test.js lib/contact-navigation.test.js",
+    "content:import": "node scripts/import-content-to-supabase.mjs",
+    "photos:migrate": "node scripts/migrate-photos-to-supabase-storage.mjs"
   },
   "dependencies": {
     "@alvalens/react-fullpage-snap": "^1.0.2",
@@ -27,6 +30,8 @@
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^15.2.8",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.2",
     "@tailwindcss/postcss": "^4.0.14",
     "@vercel/analytics": "^1.5.0",
     "eslint": "9.22.0",

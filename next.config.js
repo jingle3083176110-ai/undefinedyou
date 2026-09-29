@@ -12,6 +12,10 @@ module.exports = withMDX(
 				protocol: "https",
 				hostname: "i.scdn.co",
 			},
+			{
+				protocol: "https",
+				hostname: "cdn.simpleicons.org",
+			},
 		],
 		// Add image optimization settings
 		formats: ["image/avif", "image/webp"],

@@ -182,8 +182,26 @@ html:has(body.fullpage-active) {
 	justify-content: center;
 }
 
+/* Browser zoom changes the visual viewport without changing 100vh. Use
+   normal document flow while zoomed so the page remains scrollable. */
+.browser-zoomed .section {
+	height: auto;
+	min-height: 0;
+	align-items: flex-start;
+}
+
+.browser-zoomed .section > section {
+	min-height: auto !important;
+}
+
 .navbar {
 	z-index: 100 !important;
+}
+
+/* The photography desk owns its own navigation; keep the public navbar from
+   covering the admin title and controls. */
+.photo-admin-route .navbar {
+	display: none !important;
 }
 
 /* h2, h3, h4, h5, h6 {

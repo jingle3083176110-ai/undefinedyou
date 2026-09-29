@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useLocale } from "@/components/LocaleProvider";
 
@@ -11,7 +11,7 @@ export default function ReadingRoomClient({ books }) {
   const [offsets, setOffsets] = useState(() => books.map((_, index) => index));
   const book = books[active];
 
-  const updateActiveBook = () => {
+	const updateActiveBook = useCallback(() => {
     const shelf = shelfRef.current;
     if (!shelf) return;
     const center = shelf.scrollLeft + shelf.clientWidth / 2;
@@ -23,13 +23,13 @@ export default function ReadingRoomClient({ books }) {
       return absolute < current.distance ? { index, distance: absolute } : current;
     }, { index: active, distance: Number.POSITIVE_INFINITY });
     setActive(nearest.index);
-  };
+	}, [active]);
 
   useEffect(() => {
     const frame = requestAnimationFrame(updateActiveBook);
     window.addEventListener("resize", updateActiveBook);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("resize", updateActiveBook); };
-  }, []);
+	}, [updateActiveBook]);
 
   const shelfCaption = useMemo(() => `${String(active + 1).padStart(2, "0")} / ${String(books.length).padStart(2, "0")}`, [active, books.length]);
 

@@ -54,7 +54,7 @@ export default function PhotoMetadataManager({ photos }) {
       setMetadata(next);
       window.localStorage.setItem(storageKey, JSON.stringify(next));
     }
-  }, [photos]);
+	}, [photos, metadata]);
 
   const filtered = useMemo(() => photos.filter((photo) => {
     const text = `${photo.id} ${filename(photo.src)} ${photo.location || ""} ${photo.locationZh || ""}`.toLowerCase();

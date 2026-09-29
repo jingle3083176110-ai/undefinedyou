@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useLocale } from "@/components/LocaleProvider";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,9 +48,11 @@ export default function Page() {
 						</motion.p>
 					</div>
 					<motion.div className="md:justify-self-end" {...fadeUp(0.25)}>
-					<img
+					<Image
 						src="/about/profile.jpg"
 						alt="Personal profile"
+						width={208}
+						height={208}
 						className="h-52 w-52 rounded-full border border-ink/15 object-cover shadow-[0_12px_30px_rgba(26,24,21,.12)]"
 					/>
 					</motion.div>

@@ -6,6 +6,7 @@ config.autoAddCss = false;
 import { Analytics } from "@vercel/analytics/react";
 import ClientTopProgressBar from "@/components/ClientTopProgressBar";
 import { LocaleProvider } from "@/components/LocaleProvider";
+import HomeRouteReset from "@/components/HomeRouteReset";
 
 export const metadata = {
   metadataBase: new URL("https://undefinedyou.com"),
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
 				<LocaleProvider>
 					<ClientTopProgressBar />
 					<Navbar />
+					<HomeRouteReset />
 					{children}
 					<Analytics />
 				</LocaleProvider>
