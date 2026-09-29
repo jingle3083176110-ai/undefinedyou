@@ -246,11 +246,13 @@ export default function PhotoAdminClient() {
   }
 
   const normalizedQuery = query.trim().toLowerCase();
-  const visible = photos.filter((photo) => (
+  const visible = [...photos.filter((photo) => (
     (status === "all" || (status === "published" ? photo.published !== false : photo.published === false))
-    && (type === "all" || (photo.collectionIds || []).some((id) => collections.find((collection) => collection.id === id)?.collection_type === type))
     && `${photo.id} ${photo.title || ""} ${photo.title_zh || ""} ${photo.location || ""} ${photo.location_zh || ""} ${photo.note || ""} ${photo.note_zh || ""} ${photo.alt || ""}`.toLowerCase().includes(normalizedQuery)
-  ));
+  ))].sort((left, right) => {
+    const collectionMatch = (photo) => type === "all" || (photo.collectionIds || []).some((id) => collections.find((collection) => collection.id === id)?.collection_type === type);
+    return Number(collectionMatch(right)) - Number(collectionMatch(left));
+  });
 
   const activeSection = collectionTypeView || (tab === "upload" || tab === "batch" ? tab : "overview");
   const pageTitle = collectionTypeView === "theme" ? "Themes" : collectionTypeView === "workshop" ? "Workshops" : tab === "upload" ? "上传照片" : tab === "batch" ? "批量操作" : "摄影总览";

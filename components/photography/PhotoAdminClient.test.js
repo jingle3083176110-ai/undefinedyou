@@ -126,6 +126,13 @@ test("photo cms filters expose stable labels for search and filter groups", asyn
   assert.match(source, /全部主题/);
 });
 
+test("photo admin prioritizes photos matching the active collection filter", async () => {
+  const source = await fs.readFile(componentPath, "utf8");
+  assert.match(source, /const visible = \[\.\.\.photos\.filter/);
+  assert.match(source, /collectionMatch/);
+  assert.match(source, /sort\(/);
+});
+
 test("photo edit drawer protects focus and unsaved changes", async () => {
   const drawer = await fs.readFile(drawerPath, "utf8");
   const panel = await fs.readFile(editPanelPath, "utf8");
